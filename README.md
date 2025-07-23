@@ -1,4 +1,4 @@
-# Project Title: Turn Based Differential Duel Game Made in Python
+# Project Title: Turn-Based Differential Duel Game Made in Python
 
 ## 1. Project Description:
 
@@ -36,6 +36,8 @@ https://drive.google.com/drive/folders/1BOyZLIPuTAYARAQwh6KQ59-9bwdTDiJG?usp=sha
 5. Open main.py and run
 
 6. Play the game
+
+7. If there are missing modules, refer to 3. and download pygame / python
 
 Enjoy!
 
