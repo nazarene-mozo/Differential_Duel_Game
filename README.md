@@ -9,7 +9,7 @@ Differential Duel is a turn-based educational and action-packed 2D fighting game
 
 - Python 3.8+
 - Pygame (Downloadable)
-- Turtle (built-in module)
+- Turtle (Built-in module)
 - Sympy (Downloadable)
 
 URL: [https://www.pygame.org/news ](https://www.pygame.org/news)
