@@ -79,6 +79,11 @@ This game reinforces mathematical creativity and intuition by encouraging users 
 ## 6. Created By:
 
 Names: 
+- Karl Duran
+- Vaughn Derek Ligan
+- Nazarene Ron Mozo
+- Jude Gervin Quilatan
+- Kenneth Santiago
 
 Project Name: Basic Calculus Video Game - Culminating Project - Differential Duel
 
