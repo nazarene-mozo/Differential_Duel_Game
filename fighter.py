@@ -1,5 +1,5 @@
-# Original Brawler Game Author: 
-# Modifications: Calculator Integration and Turn Based Game 
+# Original Brawler Game Author: Coding with Russ
+# Modifications: Calculator Integration and Turn-Based Game 
 
 import pygame
 import random
