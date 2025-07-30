@@ -1,5 +1,5 @@
-# Original Brawler Game Author: Coding with Russ
-# Modifications: Calculator Integration and Turn-Based Game 
+# Original Brawler Game Author: Coding With Russ
+# Modifications: Calculator Integration and Turn Based Game 
 
 import pygame
 from pygame import mixer
@@ -113,23 +113,21 @@ def validate_equation(equation):
     allowed_chars = r'[x0-9+\-*/().^]'
     allowed_functions = ['sin', 'cos', 'tan', 'csc', 'sec', 'cot', 'log', 'ln', 'sqrt', 'abs', 'exp']
     
-    # Must contain 'x' (the variable)
-    if 'x' not in normalized.lower():
-        return False, "Equation must contain variable 'x'"
+    # Must contain at least one variable: 'x' or 'e'
+    if not any(var in normalized.lower() for var in ['x', 'e']):
+      return False, "Equation must contain at least one variable: 'x' or 'e'"
     
     # Check for valid characters and functions
     temp_eq = normalized.lower()
-    
+    match = re.search(r'(\d+)x', temp_eq)
+
     # Remove allowed functions from string for character checking
     for func in allowed_functions:
         temp_eq = temp_eq.replace(func, '')
     
-    # Remove 'e' (Euler's number) if present
-    temp_eq = temp_eq.replace('e', '')
-    
     # Check if remaining characters are allowed
-    if not re.match(r'^[x0-9+\-*/().^]*$', temp_eq):
-        invalid_chars = set(temp_eq) - set('x0123456789+-*/().^')
+    if not re.match(r'^[ex0-9+\-*/().^]*$', temp_eq):
+        invalid_chars = set(temp_eq) - set('ex0123456789+-*/().^')
         return False, f"Invalid characters: {', '.join(invalid_chars)}"
     
     # Basic syntax validation - check for balanced parentheses
@@ -140,6 +138,17 @@ def validate_equation(equation):
     if re.search(r'[+\-*/]{2,}', equation.replace('**', '*')):
         return False, "Invalid operator sequence"
     
+    # Disallow implicit multiplication like '4x'
+    if match:
+      bad = match.group(0)             # e.g., '4x'
+      fixed = match.group(1) + '*x'    # e.g., '4*x'
+      suggestion = equation.replace(bad, fixed, 1)  # Only replace the first occurrence for message clarity
+      return False, f"Use explicit multiplication: write '{suggestion}' instead of '{equation}'"
+
+    # Limit hoqay integer inputs you can put
+    if re.search(r'\b\d{2,}\b', temp_eq):  # \b ensures whole numbers are checked
+        return False, "Integers must not exceed 1 digit"
+
     return True, ""
 
 # Function for drawing text
@@ -231,7 +240,7 @@ fighter_1 = Fighter(1, 200, 310, False, WARRIOR_DATA, warrior_sheet, WARRIOR_ANI
 fighter_2 = Fighter(2, 700, 310, True, WIZARD_DATA, wizard_sheet, WIZARD_ANIMATION_STEPS, magic_fx)
 
 # Game state variables
-game_state = "waiting_input"  # "waiting_input", "player_attacking", "enemy_attacking"
+game_state = "waiting_input"  # "waiting_input", "player_attacking", "enemy_attacking"F
 attack_start_time = 0
 ATTACK_DURATION = 800  # Duration for each attack phase
 
