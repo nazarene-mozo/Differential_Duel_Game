@@ -40,11 +40,25 @@ https://drive.google.com/drive/folders/1BOyZLIPuTAYARAQwh6KQ59-9bwdTDiJG?usp=sha
 
 4. Then install the required Python libraries:
 
-5. Open main.py and run
+- Pygame
 
-6. Play the game
+- Sympy
 
-7. If there are missing modules, refer to 3. and download pygame / python
+- Re
+
+- Threading
+
+- Turtle
+
+- Random
+
+- Sys
+
+6. Open main.py and run
+
+7. Play the game
+
+8. If there are missing modules, refer to 3. and download pygame / python
 
 Enjoy!
 
