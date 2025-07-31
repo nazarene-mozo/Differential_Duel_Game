@@ -84,6 +84,8 @@ wizard_sheet = pygame.image.load("assets/images/wizard/Sprites/wizard.png").conv
 
 # Load vicory image
 victory_img = pygame.image.load("assets/images/icons/victory.png").convert_alpha()
+deafeat_img = pygame.image.load("assets/images/icons/defeat.png").convert_alpha()
+
 
 # Define number of steps in each animation
 WARRIOR_ANIMATION_STEPS = [10, 8, 1, 7, 7, 3, 7]
@@ -342,8 +344,12 @@ while run:
       round_over_time = pygame.time.get_ticks()
       print("You are a Winner")
   else:
-    # Display victory image
-    screen.blit(victory_img, (360, 150))
+    # Display victory/defeat image
+    if fighter_1.alive == False:
+       screen.blit(deafeat_img, (360,150))
+    elif fighter_2.alive == False:
+      screen.blit(victory_img, (360, 150))  
+
     if pygame.time.get_ticks() - round_over_time > ROUND_OVER_COOLDOWN:
       round_over = False
       intro_count = 3
